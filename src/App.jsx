@@ -64,7 +64,6 @@ function App() {
   };
 
   return (
-    // Bu yerda <div style={styles.container}> o'rniga <div className="container"> ishlatildi
     <div className="container">
       <h1 className="header">Kino Ro‘yxati</h1>
 
@@ -73,7 +72,9 @@ function App() {
       {loading ? (
         <p className="loading">Yuklanmoqda...</p>
       ) : movies.length === 0 ? (
-        <p className="no-movies">Hozircha kinolar mavjud emas.</p>
+        <p style={{ textAlign: "center", color: "#666" }}>
+          Hozircha kinolar mavjud emas.
+        </p>
       ) : (
         <ul className="movie-list">
           {movies.map(({ id, title, director, year }) => (
@@ -83,7 +84,9 @@ function App() {
                 {year || "Yil noma'lum"}
               </div>
               <button
-                className="delete-btn"
+                className={`delete-btn ${
+                  deleteHoverId === id ? "delete-btn-hover" : ""
+                }`}
                 onClick={() => handleDelete(id)}
                 onMouseEnter={() => setDeleteHoverId(id)}
                 onMouseLeave={() => setDeleteHoverId(null)}
@@ -111,7 +114,7 @@ function App() {
             onChange={handleChange}
             onFocus={() => setInputFocus({ ...inputFocus, title: true })}
             onBlur={() => setInputFocus({ ...inputFocus, title: false })}
-            className="input"
+            className={`input ${inputFocus.title ? "input-focus" : ""}`}
             required
             placeholder="Masalan: Inception"
             autoComplete="off"
@@ -130,7 +133,7 @@ function App() {
             onChange={handleChange}
             onFocus={() => setInputFocus({ ...inputFocus, director: true })}
             onBlur={() => setInputFocus({ ...inputFocus, director: false })}
-            className="input"
+            className={`input ${inputFocus.director ? "input-focus" : ""}`}
             placeholder="Masalan: Christopher Nolan"
             autoComplete="off"
           />
@@ -145,12 +148,12 @@ function App() {
             name="year"
             type="number"
             min="1800"
-            max="2100"
+            max="2102"
             value={form.year}
             onChange={handleChange}
             onFocus={() => setInputFocus({ ...inputFocus, year: true })}
             onBlur={() => setInputFocus({ ...inputFocus, year: false })}
-            className="input"
+            className={`input ${inputFocus.year ? "input-focus" : ""}`}
             placeholder="Masalan: 2010"
             autoComplete="off"
           />
@@ -158,7 +161,7 @@ function App() {
 
         <button
           type="submit"
-          className="submit-btn"
+          className={`submit-btn ${submitHover ? "submit-btn-hover" : ""}`}
           onMouseEnter={() => setSubmitHover(true)}
           onMouseLeave={() => setSubmitHover(false)}
         >
