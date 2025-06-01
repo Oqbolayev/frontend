@@ -65,7 +65,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="header">Movies List</h1>
+      <h1 className="header">Kino Ro‘yxati</h1>
 
       {error && <div className="error">{error}</div>}
 
