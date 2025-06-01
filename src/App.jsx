@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 
-const BASE_URL = "https://backend-19to.onrender.com";
+const BASE_URL = "https://backend-19to.onrender.com/movies";
 
 function App() {
   const [movies, setMovies] = useState([]);
